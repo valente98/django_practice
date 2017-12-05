@@ -89,4 +89,35 @@ class TestmultThreeView(TestCase):
         self.assertEqual(answer, 14)
 
 
+class TestEarningView(TestCase):
+    def test_test_without_num_doesnt_set_answer(self):
+        response = self.client.get(reverse('app:earning'))
+
+        answer = response.context.get('answer')
+
+        self.assertIsNone(answer)
+
+    def test_earning_seven_one_two_equals_oneHudredThirtyFive(self):
+        response = self.client.get(
+            reverse('app:earning'),
+            {'num1': 7,
+             'num2': 1,
+             'num3': 2}, )
+
+        answer = response.context.get('answer')
+
+        self.assertEqual(answer, 135)
+
+    def test_earning_one_five_ten_equals_oneHundredSixtyFive(self):
+        response = self.client.get(
+            reverse('app:earning'),
+            {'num1': 1,
+             'num2': 5,
+             'num3': 10}, )
+
+        answer = response.context.get('answer')
+
+        self.assertEqual(answer, 165)
+
+
 # Create your tests here.
