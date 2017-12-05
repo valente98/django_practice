@@ -12,3 +12,14 @@ def add(request):
         return render(request, 'app/add.html', {'answer': answer})
     else:
         return render(request, 'app/add.html')
+
+
+def double(request):
+    num1 = request.GET.get('num1')
+
+    if num1 is not None:
+        num1 = int(num1)
+        answer = num1 * 2
+        return render(request, 'app/double.html', {'answer': answer})
+    else:
+        return render(request, 'app/double.html')
