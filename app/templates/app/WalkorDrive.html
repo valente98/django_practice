@@ -1,0 +1,10 @@
+{% block body %}
+
+<form action="{% url 'app:bothTrue' %}" method="GET" role="form">
+    {{ form }}
+    {% if answer != None %}
+        <h3>Answer: {{ answer }}</h3>
+    {% endif %}
+</form>
+
+{% endblock body %}
