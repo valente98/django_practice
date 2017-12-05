@@ -1,7 +1,0 @@
-{
-  "app/tests.py::TestAddView::()": true,
-  "app/tests.py::TestBothTrueview::()": true,
-  "app/tests.py::TestDoubleView::()": true,
-  "app/tests.py::TestEarningView::()": true,
-  "app/tests.py::TestmultThreeView::()": true
-}
