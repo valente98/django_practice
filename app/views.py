@@ -23,3 +23,19 @@ def double(request):
         return render(request, 'app/double.html', {'answer': answer})
     else:
         return render(request, 'app/double.html')
+
+
+def multThree(request):
+    num1 = request.GET.get('num1')
+    num2 = request.GET.get('num2')
+    num3 = request.GET.get('num3')
+
+    if num1 is not None:
+        num1 = float(num1)
+        num2 = float(num2)
+        num3 = float(num3)
+
+        answer = num1 * num2 * num3
+        return render(request, 'app/multThree.html', {'answer': answer})
+    else:
+        return render(request, 'app/multThree.html')
