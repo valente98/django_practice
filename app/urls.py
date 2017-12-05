@@ -5,5 +5,6 @@ app_name = 'app'
 
 urlpatterns = [
     path('add/', views.add, name='add'),
-    path('double/', views.double, name='double')
+    path('double/', views.double, name='double'),
+    path('multThree/', views.multThree, name='multThree')
 ]
