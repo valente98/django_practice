@@ -55,3 +55,14 @@ def earning(request):
         return render(request, 'app/earning.html', {'answer': answer})
     else:
         return render(request, 'app/earning.html')
+
+
+def bothTrue(request):
+    bool1 = request.GET.get('bool1')
+    bool2 = request.GET.get('bool2')
+
+    if bool1 is not None and bool2 is not None:
+        answer = bool1.lower() == 'true' and bool2.lower() == 'true'
+        return render(request, 'app/bothTrue.html', {'answer': answer})
+    else:
+        return render(request, 'app/bothTrue.html')
