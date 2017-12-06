@@ -188,7 +188,7 @@ class TestWalkorDriveview:
 
 
 class TestHowPopulatedView:
-    def test_without_num_and_bool_doesnt_set_answer(self, client):
+    def test_without_num_doesnt_set_answer(self, client):
         response = client.get(reverse('app:howPopulated'))
 
         answer = response.context.get('answer')
@@ -216,6 +216,60 @@ class TestHowPopulatedView:
         answer = response.context.get('answer')
 
         assert answer == 'Densely Populated'
+
+
+class TestGoldStarView:
+    def test_without_num_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:goldStar'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_goldStar_999_point_should_equal_one_star(self, client):
+        response = client.get(
+            reverse('app:goldStar'),
+            {'Points': 999}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '*'
+
+    def test_goldStar_2000_point_should_equal_2_star(self, client):
+        response = client.get(
+            reverse('app:goldStar'),
+            {'Points': 2000}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '**'
+
+    def test_goldStar_6799_point_should_equal_3_star(self, client):
+        response = client.get(
+            reverse('app:goldStar'),
+            {'Points': 6799}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '***'
+
+    def test_goldStar_8765_point_should_equal_4_star(self, client):
+        response = client.get(
+            reverse('app:goldStar'),
+            {'Points': 8765}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '****'
+
+    def test_goldStar_20000_point_should_equal_5_star(self, client):
+        response = client.get(
+            reverse('app:goldStar'),
+            {'Points': 20000}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '*****'
 
 
 # Create your tests here.
