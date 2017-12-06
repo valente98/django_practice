@@ -272,4 +272,51 @@ class TestGoldStarView:
         assert answer == '*****'
 
 
+class TestHowManyPointsView:
+    def test_howManyPoints_touchDown_equals_6(self, client):
+        response = client.get(
+            reverse('app:howManyPoints'),
+            {'scoringAction': 'td'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '6'
+
+    def test_howManyPoints_extraKick_equals_1(self, client):
+        response = client.get(
+            reverse('app:howManyPoints'),
+            {'scoringAction': 'ek'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '1'
+
+    def test_howManyPoints_extraConvertion_equals_6(self, client):
+        response = client.get(
+            reverse('app:howManyPoints'),
+            {'scoringAction': 'ec'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '2'
+
+    def test_howManyPoints_fieldGoal_equals_1(self, client):
+        response = client.get(
+            reverse('app:howManyPoints'),
+            {'scoringAction': 'fg'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '3'
+
+    def test_howManyPoints_touchDown_equals_6(self, client):
+        response = client.get(
+            reverse('app:howManyPoints'),
+            {'scoringAction': 'sa'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == '2'
+
+
 # Create your tests here.
