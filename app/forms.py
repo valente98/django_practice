@@ -52,3 +52,14 @@ class WalkorDriveForm(forms.Form):
             return "You should walk"
         else:
             return 'You should drive'
+
+
+class HowPopulatedForm(forms.Form):
+    Population = forms.FloatField()
+    LandArea = forms.FloatField()
+
+    def answer(self):
+        if self.cleaned_data['Population'] / self.cleaned_data['LandArea'] > 100:
+            return 'Densely Populated'
+        else:
+            return 'Sparsely Populated'
