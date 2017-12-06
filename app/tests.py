@@ -125,7 +125,7 @@ class TestBothTrueview:
 
         answer = response.context.get('answer')
 
-        assert answer is None
+        assert answer == False
 
     def test_bothTrue_true_false_equals_false(self, client):
         response = client.get(
