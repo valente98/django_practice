@@ -14,14 +14,15 @@ def add(request):
 
 
 def double(request):
-    num1 = request.GET.get('num1')
+    doubleForm = forms.DoubleForm(request.GET)
 
-    if num1 is not None:
-        num1 = int(num1)
-        answer = num1 * 2
-        return render(request, 'app/double.html', {'answer': answer})
+    if doubleForm.is_valid():
+        answer = doubleForm.answer()
+        return render(request, 'app/double.html',
+                      {'form': doubleForm,
+                       'answer': answer})
     else:
-        return render(request, 'app/double.html')
+        return render(request, 'app/double.html', {'form': doubleForm})
 
 
 def multThree(request):
