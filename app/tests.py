@@ -346,4 +346,72 @@ class TestLastThreeView:
         assert answer == [34, 1, 65]
 
 
+class TestSumofListView:
+    def test_without_num_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:sumofList'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_sumofList_str_of_1_2_3_4_equals_10(self, client):
+        response = client.get(
+            reverse('app:sumofList'),
+            {'l': '1 2 3 4'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 10
+
+    def test_sumofList_str_of_22_44_10_equals_76(self, client):
+        response = client.get(
+            reverse('app:sumofList'),
+            {'l': '22 44 10'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 76
+
+
+class TestSumofLongerView:
+    def test_without_num_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:sumofLonger'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_sumofLonger_str_of_1_2_3_4_and_str_of_23_2_equals_10(
+            self, client):
+        response = client.get(
+            reverse('app:sumofLonger'),
+            {'L1': '1 2 3 4',
+             'L2': '23 2'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 10
+
+    def test_sumofLonger_str_of_1_2__and_str_of_23_2_equals_28(self, client):
+        response = client.get(
+            reverse('app:sumofLonger'),
+            {'L1': '1 2',
+             'L2': '23 2'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 28
+
+    def test_sumofLonger_str_of_1_2__and_str_of_23_2_34_1_equals_60(
+            self, client):
+        response = client.get(
+            reverse('app:sumofLonger'),
+            {'L1': '1 2',
+             'L2': '23 2 34 1'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 60
+
+
 # Create your tests here.
