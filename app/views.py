@@ -143,3 +143,16 @@ def SumofLonger(request):
                        'answer': answer})
     else:
         return render(request, 'app/problem.html', {'form': sumofLongerForm})
+
+
+def differenceFromMinimum(request):
+    differenceFromMinForm = forms.DifferenceFromMinimumForm(request.GET)
+
+    if differenceFromMinForm.is_valid():
+        answer = differenceFromMinForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': differenceFromMinForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html',
+                      {'form': differenceFromMinForm})
