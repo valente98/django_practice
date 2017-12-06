@@ -41,7 +41,7 @@ class TestDoubleView:
     def test_double_two_equals_four(self, client):
         response = client.get(
             reverse('app:double'),
-            {'num1': 2}, )
+            {'num': 2}, )
 
         answer = response.context.get('answer')
 
@@ -50,7 +50,7 @@ class TestDoubleView:
     def test_double_neg4_equals_negeight(self, client):
         response = client.get(
             reverse('app:double'),
-            {'num1': -4}, )
+            {'num': -4}, )
 
         answer = response.context.get('answer')
 
@@ -99,9 +99,9 @@ class TestEarningView:
     def test_earning_seven_one_two_equals_oneHudredThirtyFive(self, client):
         response = client.get(
             reverse('app:earning'),
-            {'num1': 7,
-             'num2': 1,
-             'num3': 2}, )
+            {'seat1': 7,
+             'seat2': 1,
+             'seat3': 2}, )
 
         answer = response.context.get('answer')
 
@@ -110,9 +110,9 @@ class TestEarningView:
     def test_earning_one_five_ten_equals_oneHundredSixtyFive(self, client):
         response = client.get(
             reverse('app:earning'),
-            {'num1': 1,
-             'num2': 5,
-             'num3': 10}, )
+            {'seat1': 1,
+             'seat2': 5,
+             'seat3': 10}, )
 
         answer = response.context.get('answer')
 
