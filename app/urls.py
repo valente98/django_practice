@@ -15,5 +15,6 @@ urlpatterns = [
     path('howManyPoints/', views.howManyPoints, name='howManyPoints'),
     path('lastThree/', views.lastThree, name='lastThree'),
     path('sumofList/', views.SumofList, name='sumofList'),
-    path('sumofLonger/', views.SumofLonger, name='sumofLonger')
+    path('sumofLonger/', views.SumofLonger, name='sumofLonger'),
+    path('diffFromMin/', views.differenceFromMinimum, name="diffFromMin")
 ]
