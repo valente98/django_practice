@@ -26,35 +26,26 @@ def double(request):
 
 
 def multThree(request):
-    num1 = request.GET.get('num1')
-    num2 = request.GET.get('num2')
-    num3 = request.GET.get('num3')
+    multThreeForm = forms.MultThreeForm(request.GET)
 
-    if num1 is not None and num2 is not None and num3 is not None:
-        num1 = float(num1)
-        num2 = float(num2)
-        num3 = float(num3)
-
-        answer = num1 * num2 * num3
-        return render(request, 'app/multThree.html', {'answer': answer})
+    if multThreeForm.is_valid():
+        answer = multThreeForm.answer()
+        return render(request, 'app/multThree.html',
+                      {'form': multThreeForm,
+                       'answer': answer})
     else:
-        return render(request, 'app/multThree.html')
+        return render(request, 'app/multThree.html', {'form': multThreeForm})
 
 
 def earning(request):
-    num1 = request.GET.get('num1')
-    num2 = request.GET.get('num2')
-    num3 = request.GET.get('num3')
-
-    if num1 is not None and num2 is not None and num3 is not None:
-        num1 = float(num1)
-        num2 = float(num2)
-        num3 = float(num3)
-
-        answer = num1 * 15 + num2 * 12 + num3 * 9
-        return render(request, 'app/earning.html', {'answer': answer})
+    earningForm = forms.Earningsform(request.GET)
+    if earningForm.is_valid():
+        answer = earningForm.answer()
+        return render(request, 'app/earning.html',
+                      {'form': earningForm,
+                       'answer': answer})
     else:
-        return render(request, 'app/earning.html')
+        return render(request, 'app/earning.html', {'form': earningForm})
 
 
 def bothTrue(request):
