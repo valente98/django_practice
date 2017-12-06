@@ -1,7 +1,8 @@
 {% block body %}
 
-<form action="{% url 'app:bothTrue' %}" method="GET" role="form">
+<form method="GET" role="form">
     {{ form }}
+    <button type="submit" class="btn btn-primary">What should I do?</button>
     {% if answer != None %}
         <h3>Answer: {{ answer }}</h3>
     {% endif %}
