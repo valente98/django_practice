@@ -414,4 +414,32 @@ class TestSumofLongerView:
         assert answer == 60
 
 
+class TestDifferenceFromMinimumview:
+    def test_without_num_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:diffFromMin'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_diffFromMin_str_of_1_2_3_4_and_equals_0_1_2_3(self, client):
+        response = client.get(
+            reverse('app:diffFromMin'),
+            {'l': '1 2 3 4'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == [0, 1, 2, 3]
+
+    def test_diffFromMin_str_of_neg67_222_3_4_and_equals_0_155_neg64_neg63(
+            self, client):
+        response = client.get(
+            reverse('app:diffFromMin'),
+            {'l': '-67 222 3 4'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == [0, 289, 70, 71]
+
+
 # Create your tests here.
