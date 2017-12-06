@@ -71,3 +71,15 @@ def WalkorDrive(request):
     else:
         return render(request, 'app/WalkorDrive.html',
                       {'form': walkorDriveForm})
+
+
+def howPopulated(request):
+    howPopulatedForm = forms.HowPopulatedForm(request.GET)
+
+    if howPopulatedForm.is_valid():
+        answer = howPopulatedForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': howPopulatedForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': howPopulatedForm})
