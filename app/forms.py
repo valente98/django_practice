@@ -26,10 +26,18 @@ class MultThreeForm(forms.Form):
             'num2'] * self.cleaned_data['num3']
 
 
-class Earningsform(forms.Form):
+class EarningsForm(forms.Form):
     seat1 = forms.FloatField()
     seat2 = forms.FloatField()
     seat3 = forms.FloatField()
 
     def answer(self):
         return self.cleaned_data['seat1'] * 15 + self.cleaned_data['seat2'] * 12 + self.cleaned_data['seat3'] * 9
+
+
+class BothTrueForm(forms.Form):
+    bool1 = forms.BooleanField(required=False)
+    bool2 = forms.BooleanField(required=False)
+
+    def answer(self):
+        return self.cleaned_data['bool1'] and self.cleaned_data['bool2']
