@@ -107,3 +107,15 @@ def howManyPoints(request):
                        'answer': Points})
     else:
         return render(request, 'app/problem.html', {'form': howManyPointsForm})
+
+
+def lastThree(request):
+    lastThreeForm = forms.LastThreeForm(request.GET)
+
+    if lastThreeForm.is_valid():
+        answer = lastThreeForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': lastThreeForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': lastThreeForm})
