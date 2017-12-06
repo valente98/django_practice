@@ -102,3 +102,25 @@ class LastThreeForm(forms.Form):
 
     def answer(self):
         return list(map(int, self.cleaned_data['l1'].split()))[-3:]
+
+
+class SumofListForm(forms.Form):
+    l = forms.CharField()
+
+    def answer(self):
+        return sum(list(map(int, self.cleaned_data['l'].split())))
+
+
+class SumofLongerForm(forms.Form):
+    L1 = forms.CharField()
+    L2 = forms.CharField()
+
+    def answer(self):
+        l1 = list(map(int, self.cleaned_data['L1'].split()))
+        l2 = list(map(int, self.cleaned_data['L2'].split()))
+        if len(l1) > len(l2):
+            return sum(l1)
+        elif len(l1) < len(l2):
+            return sum(l2)
+        else:
+            return sum(l1) + sum(l2)
