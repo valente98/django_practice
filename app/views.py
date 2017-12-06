@@ -119,3 +119,27 @@ def lastThree(request):
                        'answer': answer})
     else:
         return render(request, 'app/problem.html', {'form': lastThreeForm})
+
+
+def SumofList(request):
+    sumofListForm = forms.SumofListForm(request.GET)
+
+    if sumofListForm.is_valid():
+        answer = sumofListForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': sumofListForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': sumofListForm})
+
+
+def SumofLonger(request):
+    sumofLongerForm = forms.SumofLongerForm(request.GET)
+
+    if sumofLongerForm.is_valid():
+        answer = sumofLongerForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': sumofLongerForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': sumofLongerForm})
