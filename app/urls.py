@@ -9,5 +9,6 @@ urlpatterns = [
     path('multThree/', views.multThree, name='multThree'),
     path('earning/', views.earning, name='earning'),
     path('bothTrue/', views.bothTrue, name='bothTrue'),
-    path('WalkorDrive/', views.WalkorDrive, name='WalkorDrive')
+    path('WalkorDrive/', views.WalkorDrive, name='WalkorDrive'),
+    path('howPopulated/', views.howPopulated, name='howPopulated')
 ]
