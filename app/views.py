@@ -83,3 +83,15 @@ def howPopulated(request):
                        'answer': answer})
     else:
         return render(request, 'app/problem.html', {'form': howPopulatedForm})
+
+
+def goldStar(request):
+    goldStarForm = forms.GoldStarsForm(request.GET)
+
+    if goldStarForm.is_valid():
+        answer = goldStarForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': goldStarForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': goldStarForm})
