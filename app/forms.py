@@ -41,3 +41,14 @@ class BothTrueForm(forms.Form):
 
     def answer(self):
         return self.cleaned_data['bool1'] and self.cleaned_data['bool2']
+
+
+class WalkorDriveForm(forms.Form):
+    miles = forms.FloatField()
+    Weather = forms.BooleanField(required=False)
+
+    def answer(self):
+        if self.cleaned_data['miles'] <= 0.25 and self.cleaned_data['Weather']:
+            return "You should walk"
+        else:
+            return 'You should drive'
