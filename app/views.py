@@ -95,3 +95,15 @@ def goldStar(request):
                        'answer': answer})
     else:
         return render(request, 'app/problem.html', {'form': goldStarForm})
+
+
+def howManyPoints(request):
+    howManyPointsForm = forms.HowManyPointsForm(request.GET)
+
+    if howManyPointsForm.is_valid():
+        Points = howManyPointsForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': howManyPointsForm,
+                       'answer': Points})
+    else:
+        return render(request, 'app/problem.html', {'form': howManyPointsForm})
