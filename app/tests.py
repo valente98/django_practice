@@ -158,4 +158,33 @@ class TestBothTrueview:
         assert answer == False
 
 
+class TestWalkorDriveview:
+    def test_without_num_and_bool_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:WalkorDrive'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_WalkorDrive_three_miles_Goodweather_should_drive(self, client):
+        response = client.get(
+            reverse('app:WalkorDrive'),
+            {'miles': 3,
+             'Weather': True}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 'You should drive'
+
+    def test_WalkorDrive_pointtTwo_miles_Goodweather_should_walk(self, client):
+        response = client.get(
+            reverse('app:WalkorDrive'),
+            {'miles': .2,
+             'Weather': True}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 'You should walk'
+
+
 # Create your tests here.
