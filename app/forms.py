@@ -95,3 +95,10 @@ class HowManyPointsForm(forms.Form):
         point = self.cleaned_data['scoringAction']
         points = {'td': '6', 'ek': '1', 'ec': '2', 'fg': '3', 'sa': '2'}
         return points[point]
+
+
+class LastThreeForm(forms.Form):
+    l1 = forms.CharField()
+
+    def answer(self):
+        return list(map(int, self.cleaned_data['l1'].split()))[-3:]
