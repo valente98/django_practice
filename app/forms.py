@@ -63,3 +63,19 @@ class HowPopulatedForm(forms.Form):
             return 'Densely Populated'
         else:
             return 'Sparsely Populated'
+
+
+class GoldStarsForm(forms.Form):
+    Points = forms.FloatField()
+
+    def answer(self):
+        if self.cleaned_data['Points'] < 1000:
+            return '*'
+        elif self.cleaned_data['Points'] < 5000:
+            return '**'
+        elif self.cleaned_data['Points'] < 8000:
+            return '***'
+        elif self.cleaned_data['Points'] < 10000:
+            return '****'
+        else:
+            return '*****'
