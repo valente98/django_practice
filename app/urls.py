@@ -13,5 +13,7 @@ urlpatterns = [
     path('howPopulated/', views.howPopulated, name='howPopulated'),
     path('goldStar/', views.goldStar, name='goldStar'),
     path('howManyPoints/', views.howManyPoints, name='howManyPoints'),
-    path('lastThree/', views.lastThree, name='lastThree')
+    path('lastThree/', views.lastThree, name='lastThree'),
+    path('sumofList/', views.SumofList, name='sumofList'),
+    path('sumofLonger/', views.SumofLonger, name='sumofLonger')
 ]
