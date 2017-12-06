@@ -12,5 +12,6 @@ urlpatterns = [
     path('WalkorDrive/', views.WalkorDrive, name='WalkorDrive'),
     path('howPopulated/', views.howPopulated, name='howPopulated'),
     path('goldStar/', views.goldStar, name='goldStar'),
-    path('howManyPoints/', views.howManyPoints, name='howManyPoints')
+    path('howManyPoints/', views.howManyPoints, name='howManyPoints'),
+    path('lastThree/', views.lastThree, name='lastThree')
 ]
