@@ -319,4 +319,31 @@ class TestHowManyPointsView:
         assert answer == '2'
 
 
+class TestLastThreeView:
+    def test_without_num_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:lastThree'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_lastThree_str_of_1_2_3_4_should_list_4_3_2(self, client):
+        response = client.get(
+            reverse('app:lastThree'),
+            {'l1': '1 2 3 4'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == [2, 3, 4]
+
+    def test_lastThree_str_of_12_34_1_65_should_list_65_1_34(self, client):
+        response = client.get(
+            reverse('app:lastThree'),
+            {'l1': '12 34 1 65'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == [34, 1, 65]
+
+
 # Create your tests here.
