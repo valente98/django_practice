@@ -79,3 +79,19 @@ class GoldStarsForm(forms.Form):
             return '****'
         else:
             return '*****'
+
+
+class HowManyPointsForm(forms.Form):
+    score_type = {
+        'td': 'Touch Down',
+        'ek': 'Extra Kick',
+        'ec': 'Extra Convertion',
+        'fg': 'Field Goal',
+        'sa': 'Safety'
+    }
+    scoringAction = forms.ChoiceField(choices=(score_type.items()))
+
+    def answer(self):
+        point = self.cleaned_data['scoringAction']
+        points = {'td': '6', 'ek': '1', 'ec': '2', 'fg': '3', 'sa': '2'}
+        return points[point]
