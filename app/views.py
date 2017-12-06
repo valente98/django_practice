@@ -38,7 +38,7 @@ def multThree(request):
 
 
 def earning(request):
-    earningForm = forms.Earningsform(request.GET)
+    earningForm = forms.EarningsForm(request.GET)
     if earningForm.is_valid():
         answer = earningForm.answer()
         return render(request, 'app/earning.html',
@@ -49,11 +49,12 @@ def earning(request):
 
 
 def bothTrue(request):
-    bool1 = request.GET.get('bool1')
-    bool2 = request.GET.get('bool2')
+    bothTrueForm = forms.BothTrueForm(request.GET)
 
-    if bool1 is not None and bool2 is not None:
-        answer = bool1.lower() == 'true' and bool2.lower() == 'true'
-        return render(request, 'app/bothTrue.html', {'answer': answer})
+    if bothTrueForm.is_valid():
+        answer = bothTrueForm.answer()
+        return render(request, 'app/bothTrue.html',
+                      {'form': bothTrueForm,
+                       'answer': answer})
     else:
-        return render(request, 'app/bothTrue.html')
+        return render(request, 'app/bothTrue.html', {'form': bothTrueForm})
