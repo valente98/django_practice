@@ -187,4 +187,35 @@ class TestWalkorDriveview:
         assert answer == 'You should walk'
 
 
+class TestHowPopulatedView:
+    def test_without_num_and_bool_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:howPopulated'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_HowPopulated_100_poulation_1_landArea_Equals_sparsely_populated(
+            self, client):
+        response = client.get(
+            reverse('app:howPopulated'),
+            {'Population': 100,
+             'LandArea': 1}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 'Sparsely Populated'
+
+    def test_HowPopulated_200_poulation_1_landArea_Equals_sparsely_populated(
+            self, client):
+        response = client.get(
+            reverse('app:howPopulated'),
+            {'Population': 200,
+             'LandArea': 1}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == 'Densely Populated'
+
+
 # Create your tests here.
