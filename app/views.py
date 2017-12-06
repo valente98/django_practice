@@ -58,3 +58,16 @@ def bothTrue(request):
                        'answer': answer})
     else:
         return render(request, 'app/bothTrue.html', {'form': bothTrueForm})
+
+
+def WalkorDrive(request):
+    walkorDriveForm = forms.WalkorDriveForm(request.GET)
+
+    if walkorDriveForm.is_valid():
+        answer = walkorDriveForm.answer()
+        return render(request, 'app/WalkorDrive.html',
+                      {'form': walkorDriveForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/WalkorDrive.html',
+                      {'form': walkorDriveForm})
