@@ -8,5 +8,6 @@ urlpatterns = [
     path('double/', views.double, name='double'),
     path('multThree/', views.multThree, name='multThree'),
     path('earning/', views.earning, name='earning'),
-    path('bothTrue/', views.bothTrue, name='bothTrue')
+    path('bothTrue/', views.bothTrue, name='bothTrue'),
+    path('WalkorDrive/', views.WalkorDrive, name='WalkorDrive')
 ]
