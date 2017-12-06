@@ -124,3 +124,12 @@ class SumofLongerForm(forms.Form):
             return sum(l2)
         else:
             return sum(l1) + sum(l2)
+
+
+class DifferenceFromMinimumForm(forms.Form):
+    l = forms.CharField()
+
+    def answer(self):
+        L = list(map(int, self.cleaned_data['l'].split()))
+        lowest = min(L)
+        return list(map(lambda x: x - lowest, L))
