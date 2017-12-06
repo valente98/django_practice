@@ -1,14 +1,7 @@
 {% block body %}
 
-<form action="{% url 'app:bothTrue' %}" method="GET" role="form">
-    <div class="form-group">
-        <label for="bool1">Chose true or false</label>
-        <input type="text" name="bool1" class="form-control" placeholder="true or false">
-    </div>
-    <div class="form-group">
-        <label for="bool2">Chose true or false</label>
-        <input type="text" name="bool2" class="form-control" placeholder="true or false">
-    </div>
+<form method="GET" role="form">
+    {{form}}
     <button type="submit" class="btn btn-primary">True?</button>
     {% if answer != None %}
         <h3>Answer: {{ answer }}</h3>
