@@ -478,7 +478,7 @@ class TestMentionsView:
 
         assert answer is None
 
-    def test_hashTags_strList_of_hashtag_Hello_and_just_world(self, client):
+    def test_mentions_strList_of_mentions_Hello_and_just_world(self, client):
         response = client.get(
             reverse('app:mentions'),
             {'Mentions': '#hello world'}, )
@@ -487,7 +487,7 @@ class TestMentionsView:
 
         assert answer == []
 
-    def test_hashTags_strList_of_hashtag_Hello_and_just_world_of_hashtagPython(
+    def test_Mentions_strList_of_mention_Hello_and_just_world_of_hashtagPython(
             self, client):
         response = client.get(
             reverse('app:mentions'),
@@ -496,6 +496,33 @@ class TestMentionsView:
         answer = response.context.get('answer')
 
         assert answer == ['@hello']
+
+
+class TestParseInventoryStringView:
+    def test_without_str_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:parseInventoryString'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_Inventory_strList_of_pizza_7_9(self, client):
+        response = client.get(
+            reverse('app:parseInventoryString'),
+            {'Inventory': 'pizza 7 9'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == ['pizza', 7, 9]
+
+    def test_Inventory_strList_of_burrito_5_7(self, client):
+        response = client.get(
+            reverse('app:parseInventoryString'),
+            {'Inventory': 'burrito 5 7'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == ['burrito', 5, 7]
 
 
 # Create your tests here.
