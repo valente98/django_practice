@@ -149,3 +149,11 @@ class MentionsForm(forms.Form):
     def answer(self):
         words = self.cleaned_data['Mentions'].split()
         return list(filter(lambda l: l.startswith('@'), words))
+
+
+class ParseInventoryStringForm(forms.Form):
+    Inventory = forms.CharField()
+
+    def answer(self):
+        Inv = self.cleaned_data['Inventory'].split()
+        return [Inv[0], float(Inv[1]), float(Inv[2])]
