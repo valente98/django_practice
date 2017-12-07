@@ -180,3 +180,16 @@ def mentions(request):
                        'answer': answer})
     else:
         return render(request, 'app/problem.html', {'form': mentionsForm})
+
+
+def parseInventoryString(request):
+    parseInventoryStringForm = forms.ParseInventoryStringForm(request.GET)
+
+    if parseInventoryStringForm.is_valid():
+        answer = parseInventoryStringForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': parseInventoryStringForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html',
+                      {'form': parseInventoryStringForm})
