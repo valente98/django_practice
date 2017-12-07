@@ -156,3 +156,27 @@ def differenceFromMinimum(request):
     else:
         return render(request, 'app/problem.html',
                       {'form': differenceFromMinForm})
+
+
+def hashTags(request):
+    hashTagsForm = forms.HashtagsForm(request.GET)
+
+    if hashTagsForm.is_valid():
+        answer = hashTagsForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': hashTagsForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': hashTagsForm})
+
+
+def mentions(request):
+    mentionsForm = forms.MentionsForm(request.GET)
+
+    if mentionsForm.is_valid():
+        answer = mentionsForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': mentionsForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': mentionsForm})
