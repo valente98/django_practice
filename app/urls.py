@@ -16,5 +16,7 @@ urlpatterns = [
     path('lastThree/', views.lastThree, name='lastThree'),
     path('sumofList/', views.SumofList, name='sumofList'),
     path('sumofLonger/', views.SumofLonger, name='sumofLonger'),
-    path('diffFromMin/', views.differenceFromMinimum, name="diffFromMin")
+    path('diffFromMin/', views.differenceFromMinimum, name="diffFromMin"),
+    path('hashTags/', views.hashTags, name='hashTags'),
+    path('mentions/', views.mentions, name='mentions')
 ]
