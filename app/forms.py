@@ -133,3 +133,19 @@ class DifferenceFromMinimumForm(forms.Form):
         L = list(map(int, self.cleaned_data['l'].split()))
         lowest = min(L)
         return list(map(lambda x: x - lowest, L))
+
+
+class HashtagsForm(forms.Form):
+    Tweet = forms.CharField()
+
+    def answer(self):
+        words = self.cleaned_data['Tweet'].split()
+        return list(filter(lambda l: l.startswith('#'), words))
+
+
+class MentionsForm(forms.Form):
+    Mentions = forms.CharField()
+
+    def answer(self):
+        words = self.cleaned_data['Mentions'].split()
+        return list(filter(lambda l: l.startswith('@'), words))
