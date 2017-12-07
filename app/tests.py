@@ -442,4 +442,60 @@ class TestDifferenceFromMinimumview:
         assert answer == [0, 289, 70, 71]
 
 
+class TestHashTagsView:
+    def test_without_str_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:hashTags'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_hashTags_strList_of_hashtag_Hello_and_just_world(self, client):
+        response = client.get(
+            reverse('app:hashTags'),
+            {'Tweet': '#hello world'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == ['#hello']
+
+    def test_hashTags_strList_of_hashtag_Hello_and_just_world_of_hashtagPython(
+            self, client):
+        response = client.get(
+            reverse('app:hashTags'),
+            {'Tweet': '#hello world of #python'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == ['#hello', '#python']
+
+
+class TestMentionsView:
+    def test_without_str_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:mentions'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_hashTags_strList_of_hashtag_Hello_and_just_world(self, client):
+        response = client.get(
+            reverse('app:mentions'),
+            {'Mentions': '#hello world'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == []
+
+    def test_hashTags_strList_of_hashtag_Hello_and_just_world_of_hashtagPython(
+            self, client):
+        response = client.get(
+            reverse('app:mentions'),
+            {'Mentions': '@hello world of #python'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == ['@hello']
+
+
 # Create your tests here.
