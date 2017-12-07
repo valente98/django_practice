@@ -18,5 +18,9 @@ urlpatterns = [
     path('sumofLonger/', views.SumofLonger, name='sumofLonger'),
     path('diffFromMin/', views.differenceFromMinimum, name="diffFromMin"),
     path('hashTags/', views.hashTags, name='hashTags'),
-    path('mentions/', views.mentions, name='mentions')
+    path('mentions/', views.mentions, name='mentions'),
+    path(
+        'parseInventoryString/',
+        views.parseInventoryString,
+        name='parseInventoryString'),
 ]
