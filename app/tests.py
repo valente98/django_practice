@@ -525,4 +525,32 @@ class TestParseInventoryStringView:
         assert answer == ['burrito', 5, 7]
 
 
+class TestIsDollarStoreView:
+    def test_without_str_doesnt_set_answer(self, client):
+        response = client.get(reverse('app:isDollarStore'))
+
+        answer = response.context.get('answer')
+
+        assert answer is None
+
+    def test_isDollarStore_for_chips_129_quantity_1_should_false(self, client):
+        response = client.get(
+            reverse('app:isDollarStore'),
+            {'L1': 'chips,1.29,1'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == False
+
+    def test_isDollarStore_for_chips_dollar_quantity_1_should_false(
+            self, client):
+        response = client.get(
+            reverse('app:isDollarStore'),
+            {'L1': 'chips,1.00,1'}, )
+
+        answer = response.context.get('answer')
+
+        assert answer == True
+
+
 # Create your tests here.
