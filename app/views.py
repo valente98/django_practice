@@ -193,3 +193,15 @@ def parseInventoryString(request):
     else:
         return render(request, 'app/problem.html',
                       {'form': parseInventoryStringForm})
+
+
+def isDollarStore(request):
+    isDollarStoreForm = forms.IsDollarStoreForm(request.GET)
+
+    if isDollarStoreForm.is_valid():
+        answer = isDollarStoreForm.answer()
+        return render(request, 'app/problem.html',
+                      {'form': isDollarStoreForm,
+                       'answer': answer})
+    else:
+        return render(request, 'app/problem.html', {'form': isDollarStoreForm})
