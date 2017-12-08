@@ -157,3 +157,25 @@ class ParseInventoryStringForm(forms.Form):
     def answer(self):
         Inv = self.cleaned_data['Inventory'].split()
         return [Inv[0], float(Inv[1]), float(Inv[2])]
+
+
+class Item:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def is_dollar_item(self):
+        return self.price <= 1
+
+
+class IsDollarStoreForm(forms.Form):
+    L1 = forms.CharField()
+
+    def parse_item(self, string):
+        name, price, quantity = string.split(',')
+        return Item(name, float(price), int(quantity))
+
+    def answer(self):
+        item_strings = self.cleaned_data['L1'].split(' ')
+        return all(self.parse_item(s).is_dollar_item() for s in item_strings)
