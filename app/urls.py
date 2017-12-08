@@ -23,4 +23,5 @@ urlpatterns = [
         'parseInventoryString/',
         views.parseInventoryString,
         name='parseInventoryString'),
+    path('isDollarStore/', views.isDollarStore, name='isDollarStore'),
 ]
